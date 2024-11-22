@@ -14,35 +14,33 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _stockController = TextEditingController();
 
-  // Function to create product with the input fields
+
   Future<void> createProduct(BuildContext context) async {
     const String apiUrl = 'http://192.168.95.151:5000/api/products/create';
-
-    // Validate inputs
-    if (_nameController.text.isEmpty || _descriptionController.text.isEmpty || _priceController.cktext.isEmpty || _stockController.text.isEmpty) {
+    if (_nameController.text.isEmpty || _descriptionController.text.isEmpty || _priceController.text.isEmpty || _stockController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fill in all fields')),
       );
       return;
     }
 
-    // Get data from controllers
+
     final String productName = _nameController.text;
     final String description = _descriptionController.text;
     final double price = double.tryParse(_priceController.text) ?? 0.0;
     final int stock = int.tryParse(_stockController.text) ?? 0;
 
     try {
-      // Create multipart request for uploading product data
+
       var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
 
-      // Add product data to request
+      
       request.fields['product_name'] = productName;
       request.fields['description'] = description;
       request.fields['price'] = price.toString();
       request.fields['stock'] = stock.toString();
 
-      // Send request to server
+      
       var response = await request.send();
 
       if (response.statusCode == 201) {

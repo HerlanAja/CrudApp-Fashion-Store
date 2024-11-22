@@ -15,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
 
-  // Fungsi untuk login
+
   Future<void> login() async {
     setState(() {
       _isLoading = true;
@@ -36,13 +36,12 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     if (response.statusCode == 200) {
-      // Jika login berhasil, arahkan ke halaman HomeScreen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     } else {
-      // Tampilkan pesan error jika login gagal
+
       final error = json.decode(response.body);
       showDialog(
         context: context,
@@ -123,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 40),
 
-            // Tombol Login
+           //login
             _isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : ElevatedButton(

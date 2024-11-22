@@ -1,10 +1,9 @@
-// screens/home_screen.dart
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../models/product_model.dart';
 import 'product_detail_screen.dart';
-import 'create_product_screen.dart';  // Pastikan sudah mengimpor CreateProductScreen
+import 'account_screen.dart'; // Tambahkan layar akun baru
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,7 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<String> categories = ["All", "Men", "Women", "Kids", "Others"];
 
-  // Fungsi untuk mengambil data produk dari API
   Future<void> fetchProducts() async {
     const String apiUrl = 'http://192.168.95.151:5000/api/products';
     try {
@@ -59,15 +57,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void onTabTapped(int index) {
     if (index == 2) {
-      // Jika yang diklik adalah tombol "+" (Add), langsung arahkan ke CreateProductScreen
+      // Navigasi ke halaman akun
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const CreateProductScreen(),
+          builder: (context) => const AccountScreen(),
         ),
       );
     } else {
-      // Jika bukan tombol "+" (Add), cukup ganti tab biasa
       setState(() {
         _currentIndex = index;
       });
@@ -169,8 +166,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add', // Tombol + untuk menambahkan produk
+            icon: Icon(Icons.account_circle), // Ikon akun
+            label: 'Account', // Label untuk akun
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
@@ -205,7 +202,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildProductCard(Product product) {
     return GestureDetector(
       onTap: () {
-        // Navigasi ke halaman detail produk
         Navigator.push(
           context,
           MaterialPageRoute(

@@ -17,7 +17,7 @@ class _DaftarScreenState extends State<DaftarScreen> {
 
   bool _isLoading = false;
 
-  // Fungsi untuk mendaftar
+  // Daftar
   Future<void> register() async {
     setState(() {
       _isLoading = true;
