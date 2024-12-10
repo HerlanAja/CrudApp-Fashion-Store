@@ -8,90 +8,99 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
+      backgroundColor: Colors.black,
+      body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Judul
-              const Text(
-                "SELAMAT DATANG DI FASHIONHUB",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+              // GIF Image
+              Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'assets/giphy.webp',
+                    width: 270,
+                    height: 480,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
-
-              // Paragraf Deskripsi
+              const SizedBox(height: 32),
+              // Title
               const Text(
-                "Temukan koleksi eksklusif dan penawaran spesial yang telah disesuaikan untuk Anda.",
+                "DISCOVER\nFASHION",
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  height: 1.2,
+                ),
+              ),
+              const SizedBox(height: 16),
+              // Description
+              const Text(
+                "Explore exclusive collections and special offers tailored just for you.",
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black54,
-                  height: 1.4,
+                  color: Colors.white70,
+                  height: 1.5,
                 ),
-                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 50),
-
-              // Tombol Daftar dan Login
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+              const Spacer(),
+              // Sign in | Login row
+              Row(
                 children: [
-                  // Tombol Daftar
-                  OutlinedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const DaftarScreen()),
-                      );
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.orange, width: 2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const DaftarScreen()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        elevation: 0,
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 18),
-                      foregroundColor: Colors.orange,
-                    ),
-                    child: const Text(
-                      'Daftar',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                      child: const Text(
+                        'Sign in',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
-
-                  // Tombol Login
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const LoginScreen()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const LoginScreen()),
+                        );
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: Colors.white, width: 2),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        foregroundColor: Colors.white,
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 18),
-                      elevation: 5,
-                    ),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -104,3 +113,4 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 }
+
